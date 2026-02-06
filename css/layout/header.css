@@ -1,0 +1,200 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 1000;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.header-container {
+    width: 100%;
+    padding: 0 3rem; /* más aire a los bordes */
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    text-transform: uppercase;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: #000;
+}
+
+.nav{
+    margin: 0 auto;
+}
+
+.nav-list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+/* Enlace del menú */
+.nav-list a {
+    position: relative; /* referencia para el pseudo-elemento */
+    text-decoration: none;
+    color: #333; 
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.8rem;
+}
+
+/* Línea decorativa debajo del enlace */
+.nav-list a::after {
+    content: ""; /* crea el pseudo-elemento */
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0; /* oculto inicialmente */
+    height: 1.5px;
+    background-color: #ff7f50;
+    transition: width 0.3s ease;
+}
+
+/* Animación al pasar el mouse */
+.nav-list a:hover::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    flex-direction: column;
+    gap: 5px;
+
+    position: relative;
+    z-index: 1001; /* apenas arriba del header */
+}
+
+
+.menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background-color: #333;
+    display: block;
+    transition: 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.search {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.quantity-products {
+  background: #034222;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+
+
+
+@media (max-width: 768px) {
+
+    .header-container{
+        padding: 1rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+        order: 1;
+        margin-left: 0;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .search,
+    .user-btn {
+        display: none;
+    }
+
+    .logo {
+        order: 2;          /* centro */
+        margin: 0 auto;
+    }
+
+    .header-actions {
+        order: 3;          /* derecha */
+    }
+
+    .nav {
+        position: fixed;   
+        top: 70px; /* debajo del header */
+        left: 0;
+        width: 100%;
+        background: #fff;
+        border-top: 1px solid #eaeaea;
+        display: none;
+        z-index: 900;
+    }
+
+    .nav.active {
+        display: block;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav-list li {
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-list a {
+        display: block;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .nav-list a::after{
+        bottom: -2px;
+    }
+
+}

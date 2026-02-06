@@ -1,0 +1,64 @@
+/* CONTENEDOR PRINCIPAL */
+.guest-checkout-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* TITULO Y SUBTITULO */
+.guest-checkout-container h1 {
+  margin-bottom: 10px;
+}
+
+.checkout-subtitle {
+  margin-bottom: 25px;
+  color: #666;
+}
+
+/* FORMULARIO */
+.guest-form {
+  text-align: left;
+}
+
+/* FILAS DOBLES */
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+/* GRUPO DE INPUT */
+.form-group {
+  flex: 1;
+  margin-bottom: 15px;
+}
+
+/* LABEL */
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+/* INPUTS */
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* BOTON CONFIRMAR */
+.guest-form .btn-primary {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* BOTON VOLVER */
+.continue-shopping {
+  display: block;
+  margin: 15px auto 0;
+}

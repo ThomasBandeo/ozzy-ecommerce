@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Producto | OZZY</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+
+            <!-- LOGO -->
+            <h1 class="logo"><a href="/">OZZY</a></h1>
+
+            <!-- NAVEGACION -->
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li> <a href="#sale"> Sale </a> </li>
+                    <li> <a href="#mujer"> Mujer </a> </li>
+                    <li> <a href="#hombre"> Hombre </a> </li>
+                    <li> <a href="#ninios"> niños </a> </li>
+                </ul>
+            </nav>
+
+            <!-- ACCIONES -->
+            <div class="header-actions">
+                <input type="search" placeholder="Buscar" class="search">
+                <button aria-label="Cuenta de usuario" class="icon-btn user-btn">👤</button>
+                <button class="icon-btn cart-btn">🛒</button>
+                <p class="quantity-products"></p>
+            </div>
+
+            <!-- MENU HAMBURGUESA -->
+            <button class="menu-toggle" aria-label="Abrir menu">
+                <span> </span>
+                <span> </span>
+                <span> </span>
+            </button> 
+
+        </div>
+    </header>
+
+  <!-- OVERLAY -->
+  <div class="overlay"></div>
+
+  <div class="cart-overlay">
+      <div class="cart">
+          <h2>mi compra</h2>
+          <button class="cart-close" aria-label="Cerrar carrito"> </button>
+          <div class="cart-items">
+            <!-- Las cart para el carrito se generan por JS -->
+          </div>
+
+          <div class="cart-total">
+            <div>
+              <h3> total </h3>
+              <p class="cart-total-price"></p>
+            </div>
+            
+            <button class="btn-buys"> Finalizar compra</button>
+          </div>
+
+      </div>
+  </div>
+
+  <main class="product-page">
+
+    <div class="product-container">
+
+      <div class="product-gallery">
+        <img id="mainImage" src="" alt="">
+      </div>
+
+      <div class="product-details">
+        <p class="product-category" id="category"></p>
+        <h1 id="title"></h1>
+        <p class="product-price" id="price"></p>
+
+        <p class="product-description" id="description">
+          Producto de alta calidad con diseño moderno y excelente confección.
+        </p>
+
+        <div class="size-selector">
+          <p class="size-title">seleccionar talle</p>
+
+          <div class="sizes">
+            <button class="size-btn">S</button>
+            <button class="size-btn">M</button>
+            <button class="size-btn">L</button>
+            <button class="size-btn">XL</button>
+          </div>
+        </div>
+
+        <button class="add-cart-btn" disabled>Agregar al carrito</button>
+      </div>
+      
+    </div>
+
+  </main>
+
+  <script type="module" src="js/ui/product.js"></script>
+
+</body>
+</html>
+

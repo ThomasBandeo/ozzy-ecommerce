@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 70px;
+}
+
+/* ------ HERO ------ */
+
+.hero {
+  min-height: calc(100vh - 70px);
+  background-image: url("../../img/img3.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-content h1 {
+  font-size: 16px;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+.hero-content h2 {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  letter-spacing: 2px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.hero-btn {
+  padding: 14px 36px;
+  border: 1px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  font-size: 0.75rem;
+}
+
+.hero-btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+
+/* ------ <!-- secciones de productos --> ------ */
+
+.products {
+  padding: 4rem 3rem;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  letter-spacing: 2px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* elemento siempre tiene que ser cuadrado */
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+.product-card {
+  transition: transform 0.3s ease;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+}
+
+.product-info {
+  padding: 0.8rem 0;
+}
+
+.product-info h4 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category {
+  font-size: 0.75rem;
+  color: #777;
+  text-transform: uppercase;
+}
+
+.price {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+section {
+    scroll-margin-top: 80px;
+}
+
+/* ------ BENEFITS / PROMOS ------ */
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+
+  padding: 3rem;
+  background-color: #f8f8f8;
+  border-top: 1px solid #eee;
+}
+
+.benefit {
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: #333;
+  padding: 1.5rem;
+  background-color: #fff;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .products {
+    padding: 2rem 1rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header-actions input {
+    display: none;
+  }
+
+  .hero-content h2 {
+    font-size: 2.5rem;
+  }
+
+  .benefits {
+    padding: 1rem;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+}

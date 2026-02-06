@@ -1,0 +1,18 @@
+## OZYY – Ecommerce de indumentaria
+
+Proyecto personal de ecommerce desarrollado con HTML, CSS y JavaScript vanilla.
+Inspirado en tiendas de streetwear como Nike.
+
+### Funcionalidades
+- Listado de productos dinámico
+- Carrito de compras persistente (localStorage)
+- Checkout con resumen de compra
+- Diseño responsive
+
+### Tecnologías
+- HTML5
+- CSS3
+- JavaScript (ES6 Modules)
+
+### Objetivo
+Proyecto realizado como práctica final de la carrera TUDAI.
