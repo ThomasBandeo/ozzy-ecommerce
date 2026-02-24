@@ -27,9 +27,22 @@
 
             <!-- ACCIONES -->
             <div class="header-actions">
-                <input type="search" placeholder="Buscar" class="search">
-                <button aria-label="Cuenta de usuario" class="icon-btn user-btn">👤</button>
-                <button class="icon-btn cart-btn">🛒</button>
+                <div class="search-box">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    <input type="search" placeholder="Buscar" class="search">
+                </div>
+                <button aria-label="Cuenta de usuario" class="icon-btn user-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                  </svg>
+                </button>
+                <button class="icon-btn cart-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                    </svg>
+                </button>
                 <p class="quantity-products"></p>
             </div>
 
@@ -54,13 +67,18 @@
             <!-- Las cart para el carrito se generan por JS -->
           </div>
 
+          <div class="cart-empty hidden">
+            <p>El carrito está vacío</p>
+            <button class="view-btn">Ver productos</button>
+          </div>
+
           <div class="cart-total">
             <div>
               <h3> total </h3>
               <p class="cart-total-price"></p>
             </div>
             
-            <button class="btn-buys"> Finalizar compra</button>
+            <button class="btn btn-primary btn-buys"> Finalizar compra</button>
           </div>
 
       </div>
@@ -72,20 +90,31 @@
 
       <div class="product-gallery">
         <img id="mainImage" src="" alt="">
+        <div class="thumbnails" id="thumbnails"></div>
       </div>
 
       <div class="product-details">
-        <p class="product-category" id="category"></p>
         <h1 id="title"></h1>
-        <p class="product-price" id="price"></p>
-
+        <p class="product-category" id="category"></p>
         <p class="product-description" id="description">
           Producto de alta calidad con diseño moderno y excelente confección.
         </p>
+        <p class="product-price" id="price"></p>
 
         <div class="size-selector">
-          <p class="size-title">seleccionar talle</p>
+          <div class="size-selector-header">
+              <p class="size-title">seleccionar talle</p>
+              <button class="size-guide-link" type="button">Guía de talles</button>
+          </div>
 
+          <!-- Modal -->
+          <div class="size-guide-modal" id="sizeGuideModal">
+            <div class="size-guide-content">
+              <button class="close-modal" id="closeSizeGuide">✕</button>
+              <img src="img/talles.png" alt="Guía de talles" class="size-guide-image">
+            </div>
+          </div>
+        
           <div class="sizes">
             <button class="size-btn">S</button>
             <button class="size-btn">M</button>
@@ -94,7 +123,7 @@
           </div>
         </div>
 
-        <button class="add-cart-btn" disabled>Agregar al carrito</button>
+        <button class="btn btn-primary add-cart-btn" disabled>Agregar al carrito</button>
       </div>
       
     </div>

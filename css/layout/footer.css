@@ -1,14 +1,13 @@
 .footer{
-    background-color: #121212;
-    border-top: 1px solid #eee;
-    color: #eee;
+  background-color: var(--color-footer);
 }
 
 .footer-logo {
   text-align: center;
   padding: 2rem;
-  font-size:3.5rem;
+  font-size: var(--font-3xl);
   letter-spacing:1rem;
+  color: var(--color-text-inverse-soft);
 }
 
 .container-footer {
@@ -24,9 +23,9 @@
 .servicios h3 {
   position: relative;
   text-transform: uppercase;
-  font-size: 16px;
-  font-weight: 500;
-
+  font-size: var(--font-md);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-inverse-soft);
 }
 
 .servicios h3::after {
@@ -34,7 +33,7 @@
   display: block;
   width: 30px;
   height: 2px;
-  background: rgba(255,255,255,0.3);
+  background: var(--color-text-inverse-muted);
   margin-top: 8px;
 }
 
@@ -47,23 +46,26 @@
 }
 
 .footer a {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.9rem;
+  color: var(--color-text-inverse-muted);
+  font-size: var(--font-sm);
   text-decoration: none;
   text-transform:capitalize;
   transition: color 0.3s ease;
 }
 
+.footer span {
+  color: var(--color-text-inverse-muted);
+  font-size: var(--font-sm);
+  text-transform: capitalize;
+}
+
 .footer a:hover {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--color-text-inverse-soft);
 }
 
 @media (max-width: 768px) {
   .container-footer{
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    padding: 2rem;
   }
 
   .footer-logo {
@@ -78,6 +80,5 @@
   .servicios h3{
     display: inline-block
   }
-
 }
 

@@ -1,0 +1,87 @@
+/* ==========================
+   RESET / BASE
+   ========================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  font-size: var(--font-md);
+  color: var(--color-text);
+}
+
+:root {
+  /* ==========================
+     LAYOUT
+  ========================== */
+  --header-height: 70px;
+
+  /* ==========================
+     BRAND COLORS
+  ========================== */
+  --color-primary: #ff7f50;
+
+  /* ==========================
+     TEXT COLORS
+  ========================== */
+  --color-text: #111;
+  --color-text-muted: #666;
+  --color-text-inverse: #ffffff;
+  --color-text-inverse-soft: rgba(255,255,255,0.92);
+  --color-text-inverse-muted: rgba(255, 255, 255, 0.6);
+
+  /* ==========================
+     SURFACE / BACKGROUNDS
+  ========================== */
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-header-bg: #ffffff;
+  --color-benefits:#f6f6f6; 
+  --color-footer:#121212;
+
+
+  /* ==========================
+     COMPONENT COLORS
+  ========================== */
+  --color-quantity-bg: #034222;
+  --color-sale-bg:#c0392b; 
+  --color-eliminate:#c62828;
+
+  /* ==========================
+     BORDERS
+  ========================== */
+  --color-border-light: #eaeaea;
+  --color-border-default: #dddddd;
+  --color-border-strong: #cccccc;
+  --color-border-contrast: #000000;
+  
+
+  /* ==========================
+     TYPOGRAPHY - SIZE
+  ========================== */
+  --font-xs: 0.75rem;  /* 12px */
+  --font-sm: 0.875rem; /* 14px */
+  --font-md: 1rem;     /* 16px */
+  --font-lg: 1.25rem;  /* 20px */
+  --font-xl: 1.5rem;   /* 24px */
+  --font-2xl: 2rem;    /* 32px */
+  --font-3xl: 3rem;    /* 48px */
+
+  /* ==========================
+     TYPOGRAPHY - WEIGHT
+  ========================== */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+}
+

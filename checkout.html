@@ -21,29 +21,21 @@
   <!-- MAIN -->
   <main class="checkout-page">
     <div class="checkout-container">
-
       <!-- CARRITO / TABLA -->
-      <section class="section-cart">
-
-        <table class="table">
-          <thead class="thead">
-            <tr>
-              <th>Producto</th>
-              <th>Descripción</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
-              <th>Borrar</th>
-            </tr>
-          </thead>
-
-          <tbody class="tbody">
-            <!-- FILAS GENERADAS POR JS -->
-          </tbody>
-        </table>
-
-      </section>
-
+      <div class="checkout-cart">
+        <div class="checkout-header checkout-grid">
+          <span>Producto</span>
+          <span>Precio</span>
+          <span>Cantidad</span>
+          <span>Subtotal</span>
+          <span></span> 
+      </div>
+    
+        <section class="section-cart">
+          
+        </section>
+      </div>
+      
       <!-- RESUMEN DE COMPRA -->
       <section class="shopping-summary">
 
@@ -82,9 +74,9 @@
 
         <!-- ACCIONES -->
         <div class="summary-actions">
-          <button class="btn-primary btn-member">Comprar como miembro</button>
-          <button class="btn-secondary">Comprar como invitado</button>
-          <button class="continue-shopping">Seguir comprando</button>
+          <button class="btn btn-primary btn-member">Comprar como miembro</button>
+          <button class="btn btn-secondary btn-guest">Comprar como invitado</button>
+          <button class="btn btn-text continue-shopping ">Seguir comprando</button>
         </div>
 
       </section>

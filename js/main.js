@@ -7,16 +7,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const productsGrid = document.getElementById("productsGrid");
   if (productsGrid) {
-    renderProducts("productsGrid");
+    renderProducts(productsGrid);
   }
   
   initCartEvents();
 
-});
 
+  const cartContainer = document.querySelector(".cart");
+  if (cartContainer) {
+    cartContainer.addEventListener("click", e => {
+      const checkoutBtn = e.target.closest(".btn-buys");
+      if (!checkoutBtn) return;
 
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("btn-buys")) {
-    window.location.href = `checkout.html`;
+      window.location.href = "checkout.html";
+    });
   }
+
 });
+

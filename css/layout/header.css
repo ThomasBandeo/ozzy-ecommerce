@@ -2,17 +2,17 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: var(--color-header-bg);
     z-index: 1000;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--color-border-light);
 }
 
 .header-container {
     width: 100%;
-    padding: 0 3rem; /* más aire a los bordes */
+    padding: 0 3rem; 
     display: flex;
     align-items: center;
-    height: 70px;
+    height: var(--header-height);
 }
 
 .logo a {
@@ -22,10 +22,9 @@
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 6px;
-  color: #000;
+    font-weight: var(--weight-bold);
+    font-size: var(--font-xl);
+    letter-spacing: 6px;
 }
 
 .nav{
@@ -40,28 +39,31 @@
 
 /* Enlace del menú */
 .nav-list a {
-    position: relative; /* referencia para el pseudo-elemento */
+    position: relative; /* ancla para el subrayado animado */
     text-decoration: none;
-    color: #333; 
-    font-weight: 500;
+    color: var(--color-text-muted);
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    font-weight: var(--weight-medium);
+    font-size: var(--font-xs);
 }
 
-/* Línea decorativa debajo del enlace */
+.nav-list a:hover {
+  color: var(--color-text);
+}
+
+/* Subrayado animado en hover */
 .nav-list a::after {
-    content: ""; /* crea el pseudo-elemento */
+    content: ""; 
     position: absolute;
     left: 0;
     bottom: -5px;
     width: 0; /* oculto inicialmente */
     height: 1.5px;
-    background-color: #ff7f50;
+    background-color: var(--color-primary);
     transition: width 0.3s ease;
 }
 
-/* Animación al pasar el mouse */
 .nav-list a:hover::after {
     width: 100%;
 }
@@ -80,11 +82,10 @@
     z-index: 1001; /* apenas arriba del header */
 }
 
-
 .menu-toggle span {
     width: 24px;
     height: 2px;
-    background-color: #333;
+    background-color: var(--color-text);
     display: block;
     transition: 0.3s ease;
 }
@@ -102,35 +103,51 @@
 }
 
 .header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    opacity: 0.5;
+}
+
+.search-box input {
+    padding-left: 36px;
 }
 
 .search {
-  padding: 0.4rem 0.7rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
 }
 
 .quantity-products {
-  background: #034222;
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background: var(--color-quantity-bg);
+    color: var(--color-surface);
+    font-size: var(--font-xs);
+    font-weight: var(--weight-bold);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  position: absolute;
-  top: -6px;
-  right: -6px;
+    position: absolute;
+    top: -6px;
+    right: -6px;
 }
-
 
 
 @media (max-width: 768px) {
@@ -143,10 +160,6 @@
         display: flex;
         order: 1;
         margin-left: 0;
-    }
-
-    .nav {
-        display: none;
     }
 
     .search,
@@ -165,11 +178,11 @@
 
     .nav {
         position: fixed;   
-        top: 70px; /* debajo del header */
+        top: var(--header-height);
         left: 0;
         width: 100%;
-        background: #fff;
-        border-top: 1px solid #eaeaea;
+        background-color: var(--color-background);
+        border-top: 1px solid var(--color-border-light);
         display: none;
         z-index: 900;
     }
@@ -184,13 +197,13 @@
     }
 
     .nav-list li {
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--color-border-light);
     }
 
     .nav-list a {
         display: block;
         padding: 1rem;
-        font-size: 0.9rem;
+        font-size: var(--font-sm);
     }
 
     .nav-list a::after{

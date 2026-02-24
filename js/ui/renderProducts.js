@@ -1,7 +1,6 @@
 import { products } from "../data/products.js";
 
-export function renderProducts(containerId) {
-  const container = document.getElementById(containerId);
+export function renderProducts(container) {
 
   let html = "";
 
@@ -15,7 +14,7 @@ export function renderProducts(containerId) {
           <h4>${product.title}</h4>
           <p class="category">${product.category}</p>
           <span class="price">$${product.price.toLocaleString()}</span>
-          <button class="view-btn" data-id="${product.id}">
+          <button class="btn view-btn" data-id="${product.id}">
             Ver Producto
           </button>
         </div>
@@ -24,12 +23,15 @@ export function renderProducts(containerId) {
   });
 
   container.innerHTML = html;
+
 }
 
+const productsGrid = document.getElementById("productsGrid");
+// ✅ Listener local y delegado
+  productsGrid.addEventListener("click", e => {
+    const btn = e.target.closest(".view-btn");
+    if (!btn) return;
 
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("view-btn")) {
-    const id = e.target.dataset.id;
+    const id = btn.dataset.id;
     window.location.href = `product.html?id=${id}`;
-  }
-});
+  });

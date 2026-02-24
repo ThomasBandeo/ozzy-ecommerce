@@ -1,15 +1,22 @@
+/* ==========================
+   BASE
+   ========================== */
+@import url("base/reset.css");
 
 /* Layout */
 @import url("layout/header.css");
 @import url("layout/overlay.css");
-@import url("layout/main.css");
+@import url("layout/home-content.css");
 @import url("layout/footer.css");
-@import url("layout/product.css");
 @import url("layout/cart.css");
-@import url("layout/checkout.css");
-@import url("layout/login.css");
-@import url("layout/checkout-guest.css");
-@import url("layout/register.css");
+
+/* Pages */
+@import url("pages/checkout.css");
+@import url("pages/login.css");
+@import url("pages/checkout-guest.css");
+@import url("pages/register.css");
+@import url("pages/product.css");
 
 /* Components */
 @import url("components/buttons.css");
+

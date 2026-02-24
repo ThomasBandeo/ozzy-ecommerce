@@ -5,6 +5,11 @@ export const products = [
     category: "Hombre",
     price: 69999,
     image: "./img/inter.jpg",
+    images: [
+    "./img/somStudios.jpg",
+    "./img/nike.jpg",
+    "./img/argentina.jpg"
+    ],
     alt: "Camiseta Inter Milan 1997/98",
   },
   {
@@ -13,6 +18,11 @@ export const products = [
     category: "Hombre",
     price: 149999,
     image: "./img/addidas.jpg",
+    images: [
+    "./img/somStudios.jpg",
+    "./img/nike.jpg",
+    "./img/argentina.jpg"
+    ],
     alt: "Zapatillas Addidas",
   },
   {
@@ -21,6 +31,11 @@ export const products = [
     category: "Hombre",
     price: 50000,
     image: "./img/somStudios.jpg",
+    images: [
+    "./img/somStudios.jpg",
+    "./img/nike.jpg",
+    "./img/argentina.jpg"
+    ],
     alt: "Buzo Som Studios",
   },
   {
@@ -29,9 +44,17 @@ export const products = [
     category: "Hombre",
     price: 1470500 ,
     image: "./img/balenciaga.jpg",
+    images: [
+    "./img/somStudios.jpg",
+    "./img/nike.jpg",
+    "./img/argentina.jpg"
+    ],
     alt: "Campera Windbreaker Balenciaga",
   },
 
 ];
+
+
+
 
 

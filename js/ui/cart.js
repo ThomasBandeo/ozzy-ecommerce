@@ -37,17 +37,23 @@ export function renderCart() {
   const closeBtn = overlay.querySelector(".cart-close");
   const totalPrice = overlay.querySelector(".cart-total-price");
   const cartTotal = overlay.querySelector(".cart-total");
+  const cartEmpty = document.querySelector(".cart-empty ");
+
 
   overlay.classList.add("active");
 
   if (cart.length === 0) {
-    itemsContainer.innerHTML = '<p class="emptyCart">El carrito está vacío </p>';
-    totalPrice.textContent = "$0";
+    cartEmpty.classList.remove("hidden");
+    itemsContainer.classList.add("hidden");
     cartTotal.classList.add("hidden");
+
+    totalPrice.textContent = "$0";
     closeBtn.addEventListener("click", closeCart);
     return;
   }
-  
+
+  cartEmpty.classList.add("hidden");
+  itemsContainer.classList.remove("hidden");
   cartTotal.classList.remove("hidden");
 
   let html = "";
@@ -62,17 +68,37 @@ export function renderCart() {
         <div class="cart-item-info">
           <p class="cart-item-title">${item.title}</p>
           <p class="cart-item-size">Talle: ${item.size}</p>
-
-          <div class="cart-item-qty">
-            <button class="cart-item-qty-left" data-id="${item.id}" data-size="${item.size}">-</button>
-            <span> ${item.quantity} </span>
-           <button class="cart-item-qty-right" data-id="${item.id}" data-size="${item.size}">+</button>
-          </div>
+          <p class="cart-item-subtotal">
+            $${(item.price * item.quantity).toLocaleString("es-AR")}
+          </p>
         </div>
 
         <div class="cart-item-price">
-            <button class="cart-item-remove" data-id="${item.id}" data-size="${item.size}">🗑</button>
-            <p>$${item.price * item.quantity}</p>
+          <div class="cart-item-qty">
+            <button class="cart-item-qty-left" data-id="${item.id}" data-size="${item.size}">-</button>
+            <span> ${item.quantity} </span>
+            <button class="cart-item-qty-right" data-id="${item.id}" data-size="${item.size}">+</button>
+          </div>
+            
+          <button class="cart-item-remove" data-id="${item.id}" data-size="${item.size}">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="18" 
+              height="18" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="1.5" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+            >
+              <path d="M3 6h18" />
+              <path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2" />
+              <path d="M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14" />
+              <line x1="10" y1="11" x2="10" y2="18" />
+              <line x1="14" y1="11" x2="14" y2="18" />
+            </svg>
+          </button>   
         </div>
       </div>
     `;
@@ -89,22 +115,25 @@ export function renderCart() {
 export function initCartEvents() {
   const itemsContainer = document.querySelector(".cart-items");
 
-  //if (!itemsContainer) return;
+  if (!itemsContainer) return;
 
   itemsContainer.addEventListener("click", (e) => {
-    const productId = e.target.dataset.id;
-    const size = e.target.dataset.size;
 
-    if (e.target.classList.contains("cart-item-qty-right")) {
-      incrementarCantidad(productId, size);
+    const btn = e.target.closest("button");
+    if (!btn) return;
+
+    const { id, size } = btn.dataset;
+
+    if (btn.classList.contains("cart-item-qty-right")) {
+      incrementarCantidad(id, size);
     }
 
-    if (e.target.classList.contains("cart-item-qty-left")) {
-      disminuirCantidad(productId, size);
+    if (btn.classList.contains("cart-item-qty-left")) {
+      disminuirCantidad(id, size);
     }
 
-    if (e.target.classList.contains("cart-item-remove")) {
-      eliminarProducto(productId, size);
+    if (btn.classList.contains("cart-item-remove")) {
+      eliminarProducto(id, size);
     }
   });
 }
@@ -123,12 +152,7 @@ export function incrementarCantidad(productId,size) {
  
   localStorage.setItem("cart", JSON.stringify(cart));
 
-  if (document.querySelector(".checkout-page")) {
-    renderCheckout();
-  } else {
-    renderCart();
-  }
-
+  refreshUI();
   updateCartQuantityUI();
 }
 
@@ -149,11 +173,8 @@ export function disminuirCantidad(productId,size) {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  if (document.querySelector(".checkout-page")) {
-    renderCheckout();
-  } else {
-    renderCart();
-  }
+
+  refreshUI();
   updateCartQuantityUI();
 }
 
@@ -165,13 +186,20 @@ export function eliminarProducto(productId,size) {
   );
   
   localStorage.setItem("cart", JSON.stringify(cart));
+  
+  refreshUI();
+  updateCartQuantityUI();
+}
+
+
+function refreshUI() {
   if (document.querySelector(".checkout-page")) {
     renderCheckout();
   } else {
     renderCart();
   }
-  updateCartQuantityUI();
 }
+
 
 function calcularTotalPrice() {
   const cart = getCart();
@@ -210,4 +238,28 @@ export function updateCartQuantityUI() {
     quantityEl.textContent = total;
 
   }
+}
+
+
+export function ensureCartNotEmpty() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (cart.length === 0) {
+    alert("No hay productos en el carrito");
+    window.location.href = "index.html";
+    return false;
+  }
+
+  return true;
+}
+
+const cartContainer = document.querySelector(".cart");
+  if (cartContainer) {
+    cartContainer.addEventListener("click", e => {
+      const btn = e.target.closest(".view-btn");
+      if (!btn) return;
+
+      window.location.href = "index.html#sale";
+      closeCart();
+  });
 }

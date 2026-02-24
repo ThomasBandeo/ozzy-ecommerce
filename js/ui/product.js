@@ -18,12 +18,51 @@ function loadProduct() {
 
   currentProduct = product; // guardamos el producto
 
+  const mainImage = document.getElementById("mainImage");
+  const thumbnailsContainer = document.getElementById("thumbnails");
+
+  // Imagen principal
+  mainImage.src = product.images?.[0] || product.image;
+  mainImage.alt = product.title;
+
   document.getElementById("mainImage").src = product.image;
   document.getElementById("mainImage").alt = product.title;
-  document.getElementById("category").textContent = product.category;
   document.getElementById("title").textContent = product.title;
+  document.getElementById("category").textContent = product.category;
   document.getElementById("price").textContent =
     `$${product.price.toLocaleString()}`;
+
+
+  // Miniaturas
+  if (!thumbnailsContainer || !product.images) return;
+
+  thumbnailsContainer.innerHTML = "";
+
+  product.images.forEach((img, index) => {
+    const thumb = document.createElement("img");
+    thumb.src = img;
+    thumb.className = "thumbnail";
+
+    if (index === 0) thumb.classList.add("active");
+
+    thumb.addEventListener("click", () => {
+      mainImage.src = img;
+
+      document.querySelectorAll(".thumbnail").forEach(t => {
+        t.classList.remove("active");
+      });
+
+      thumb.classList.add("active");
+
+      thumb.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest"
+      });
+    });
+
+    thumbnailsContainer.appendChild(thumb);
+  }); 
 }
 
 function initSizeSelector() {
@@ -33,14 +72,21 @@ function initSizeSelector() {
   addBtn.disabled = true;
 
   sizeButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      sizeButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
+  btn.setAttribute("aria-pressed", "false");
 
-      selectedSize = btn.textContent;
-      addBtn.disabled = false;
+  btn.addEventListener("click", () => {
+    sizeButtons.forEach(b => {
+      b.classList.remove("active");
+      b.setAttribute("aria-pressed", "false");
     });
+
+    btn.classList.add("active");
+    btn.setAttribute("aria-pressed", "true");
+    selectedSize = btn.textContent;
+    addBtn.disabled = false;
   });
+});  
+
 }
 
 function initAddToCart() {
@@ -56,7 +102,7 @@ function initAddToCart() {
       quantity: 1
     });
     
-    addBtn.textContent = "Agregado ✓";
+    addBtn.textContent = "Agregado al carrito ✓";
     addBtn.classList.add("added");
     addBtn.disabled = true;
 
@@ -75,14 +121,56 @@ function initProductPage() {
   initAddToCart();
 }
 
+function initPage() {
+  initHeader();
+  initProductPage();
+  initCartEvents();
+  initCheckoutRedirect();
+  initSizeGuideModal(); // 👈 acá
+}
 
-initHeader();
-initProductPage();
-initCartEvents();
+function initCheckoutRedirect() {
+  const cartContainer = document.querySelector(".cart");
+  if (!cartContainer) return;
+
+  cartContainer.addEventListener("click", e => {
+    const checkoutBtn = e.target.closest(".btn-buys");
+    if (!checkoutBtn) return;
+
+    window.location.href = "checkout.html";
+  });
+}
 
 
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("btn-buys")) {
-    window.location.href = `checkout.html`;
-  }
-});
+function initSizeGuideModal() {
+  const openBtn = document.querySelector(".size-guide-link");
+  const modal = document.getElementById("sizeGuideModal");
+  const closeBtn = document.getElementById("closeSizeGuide");
+
+  if (!openBtn || !modal || !closeBtn) return;
+
+  openBtn.addEventListener("click", () => {
+    modal.classList.add("active");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.remove("active");
+    }
+  });
+
+  // Cerrar con ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      modal.classList.remove("active");
+    }
+  });
+}
+
+
+
+initPage();

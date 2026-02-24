@@ -3,9 +3,8 @@
   max-width: 500px;
   margin: 60px auto;
   padding: 30px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border-default);
   border-radius: 8px;
-  text-align: center;
 }
 
 /* TITULO Y SUBTITULO */
@@ -15,7 +14,7 @@
 
 .checkout-subtitle {
   margin-bottom: 25px;
-  color: #666;
+  color: var(--color-text-muted);
 }
 
 /* FORMULARIO */
@@ -39,14 +38,14 @@
 .form-group label {
   display: block;
   margin-bottom: 5px;
-  font-weight: 500;
+  font-weight: var(--weight-medium);
 }
 
 /* INPUTS */
 .form-group input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border-default);
   border-radius: 4px;
 }
 
@@ -59,6 +58,16 @@
 
 /* BOTON VOLVER */
 .continue-shopping {
+  display: block;
+  margin: 15px auto 0;
+}
+
+.guest-checkout-container h1,
+.checkout-subtitle {
+  text-align: center;
+}
+
+.guest-checkout-container .continue-shopping {
   display: block;
   margin: 15px auto 0;
 }

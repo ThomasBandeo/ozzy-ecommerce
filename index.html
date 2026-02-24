@@ -13,23 +13,36 @@
         <div class="header-container">
 
             <!-- LOGO -->
-            <h1 class="logo"><a href="/">ozzy</a></h1>
+            <h1 class="logo"><a href="index.html">ozzy</a></h1>
 
             <!-- NAVEGACION -->
             <nav class="nav">
                 <ul class="nav-list">
-                    <li> <a href="#sale"> Sale </a> </li>
-                    <li> <a href="#mujer"> Mujer </a> </li>
-                    <li> <a href="#hombre"> Hombre </a> </li>
+                    <li> <a href="#sale"> sale </a> </li>
+                    <li> <a href="#mujer"> mujer </a> </li>
+                    <li> <a href="#hombre"> hombre </a> </li>
                     <li> <a href="#ninios"> niños </a> </li>
                 </ul>
             </nav>
 
             <!-- ACCIONES -->
             <div class="header-actions">
-                <input type="search" placeholder="Buscar" class="search">
-                <button aria-label="Cuenta de usuario" class="icon-btn user-btn">👤</button>
-                <button class="icon-btn cart-btn">🛒</button>
+                <div class="search-box">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    <input type="search" placeholder="Buscar" class="search">
+                </div>
+                <button aria-label="Cuenta de usuario" class="icon-btn user-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+                </button>
+                <button class="icon-btn cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                    </svg>
+                </button>
                 <p class="quantity-products"></p>
             </div>
 
@@ -54,13 +67,17 @@
                 <!-- Las cart para el carrito se generan por JS -->
             </div>
 
+             <div class="cart-empty hidden">
+                <p>El carrito está vacío</p>
+                <button class="btn view-btn">Ver productos</button>
+            </div>
+
             <div class="cart-total">
                 <div>
-                <h3> total </h3>
-                <p class="cart-total-price"></p>
+                    <h3> total </h3>
+                    <p class="cart-total-price"></p>
                 </div>
-                
-                <button class="btn-buys"> Finalizar compra</button>
+                <button class="btn btn-primary btn-buys"> Finalizar compra</button>
             </div>
 
         </div>
@@ -71,16 +88,18 @@
         <!-- HERO -->
         <section class="hero">
             <div class="hero-content">
-                <h1>NUEVA COLECCIÓN</h1>
-                <h2>OZZY</h2>
-                <p>Street & Sport 2025</p>
-                <a href="#" class="hero-btn">VER PRODUCTOS</a>
+                <h1>nueva colección</h1>
+                <h2>ozzy</h2>
+                <p>street & sport 2025</p>
+                <a href="#sale" class="btn hero-btn">ver productos</a>
             </div>
         </section>
 
         <!-- secciones de productos -->
         <section class="products" id="sale">
-            <h2 class="section-title">Productos destacados SALE</h2>
+            <h2 class="section-title">
+                Productos destacados <span class="sale-highlight">SALE</span>
+            </h2>
 
             <div class="products-grid" id="productsGrid">
                 <!-- Las cards se generan por JS -->
@@ -90,15 +109,25 @@
         <!-- promos -->
         <section class="benefits">
             <div class="benefit">
-                🚚 Envíos a todo el país 
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                </svg>
+                <p>Envíos a todo el país </p>
+                
             </div>
 
             <div class="benefit">
-                💳 3 y 6 cuotas sin interés
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
+                </svg>
+                <p>3 y 6 cuotas sin interés</p>
             </div>
 
             <div class="benefit">
-                🔄 Cambios sin cargo
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+                <p>Cambios sin cargo</p>
             </div>
         </section>
 
@@ -112,46 +141,46 @@
             <div class="servicios">
                 <h3>productos</h3>
                 <ul>
-                    <li><a href="#">sale</a></li>
-                    <li><a href="#">mujer</a></li>
-                    <li><a href="#">hombre</a></li>
-                    <li><a href="#">niños</a></li>
+                    <li><a href="#sale">sale</a></li>
+                    <li><span>mujer</span></li>
+                    <li><span>hombre</span></li>
+                    <li><span>niños</span></li>
                 </ul>
             </div>
 
             <div class="servicios">
                 <h3>servicios en linea</h3>
                 <ul>
-                    <li><a href="#">consejos y servicios</a></li>
-                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><span>consejos y servicios</span></li>
+                    <li><span>preguntas frecuentes</span></li>
                 </ul>
             </div>
 
             <div class="servicios">
                 <h3>asistencia</h3>
                 <ul>
-                    <li><a href="#">Envíos</a></li>
-                    <li><a href="#">Cambios</a></li>
-                    <li><a href="#">Pagos</a></li>
+                    <li><span>envíos</span></li>
+                    <li><span>cambios</span></li>
+                    <li><span>pagos</span></li>
                 </ul>
             </div>
 
             <div class="servicios">
                 <h3>informacion de la empresa</h3>
                 <ul>
-                    <li><a href="#">acerca de ozzy</a></li>
-                    <li><a href="#">trabaja en nuestro equipo</a></li>
-                    <li><a href="#">prensa</a></li>
-                    <li><a href="#">informacion corporativa</a></li>
+                    <li><span>acerca de ozzy</span></li>
+                    <li><span>trabaja en nuestro equipo</span></li>
+                    <li><span>prensa</span></li>
+                    <li><span>informacion corporativa</span></li>
                 </ul>
             </div>
 
             <div class="servicios">
                 <h3>siguenos</h3>
                 <ul>
-                    <li><a href="#">instragram</a></li>
-                    <li><a href="#">facebook</a></li>
-                    <li><a href="#">x</a></li>
+                    <li><span>instragram</span></li>
+                    <li><span>facebook</span></li>
+                    <li><span>x</span></li>
                 </ul>
             </div>
         </div>

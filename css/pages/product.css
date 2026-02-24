@@ -1,0 +1,231 @@
+.product-page {
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
+  padding: 3rem 2rem;
+  background: var(--color-background);
+}
+
+.product-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 5rem;
+  margin-bottom: 2rem;
+}
+
+
+.product-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.thumbnails {
+  display: flex;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 70px;
+  height: 120px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 6px;
+  opacity: 0.6;
+  border: 2px solid transparent;
+  transition: 0.2s ease;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  opacity: 1;
+  border-color: var(--color-border-contrast);
+}
+
+.product-gallery img {
+  width: 100%;
+  max-width: 90%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
+  transition: transform 0.5s ease, filter 0.4s ease;
+}
+
+.product-gallery:hover img {
+  transform: scale(1.02);
+  filter: brightness(1.03);
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-top: 1rem;
+}
+
+.product-category {
+  font-size: var(--font-xs);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.product-details h1 {
+  font-size: var(--font-xl);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+.product-price {
+  font-size: var(--font-lg);
+  font-weight: var(--weight-bold);
+}
+
+.product-description {
+  font-size: var(--font-sm);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+.size-selector{
+  margin-top: 20px;
+}
+
+.size-selector-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.size-title {
+  font-size: var(--font-md);
+  font-weight: var(--weight-medium);
+  margin-bottom: 0.5rem;
+  text-transform:capitalize;
+}
+
+.size-guide-link {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: var(--font-sm);
+  padding: 0;
+  text-transform:initial;
+}
+
+.sizes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+.size-btn {
+  padding: 0.6rem 0;
+  border: 1px solid var(--color-border-default);
+  background: var(--color-background);
+  cursor: pointer;
+  font-size: var(--font-sm);
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.size-btn:hover {
+  border-color: var(--color-border-contrast);
+}
+
+.size-btn.active {
+  border-color: var(--color-border-contrast);
+  background: var(--color-border-contrast);
+  color: var(--color-text-inverse);
+  transform: scale(1.03);
+}
+
+/* 🔒 Disabled */
+.add-cart-btn:disabled {
+  background: #ddd;
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.add-cart-btn.added {
+  background: #2e7d32; 
+  color: #fff;
+}
+
+.size-guide-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.size-guide-modal.active {
+  display: flex;
+}
+
+.size-guide-content {
+  position: relative;
+  background: var(--color-background);
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.size-guide-image {
+  display: block;
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.close-modal {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--color-border-contrast);
+  color: var(--color-text-inverse);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+  .product-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .product-gallery img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .thumbnails {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; 
+    scroll-behavior: smooth;
+    padding-bottom: 6px;
+  }
+
+  .thumbnails::-webkit-scrollbar {
+    display: none; /* limpia la barra */
+  }
+
+  .thumbnail {
+    width: auto;
+    height: 85px;
+    flex: 0 0 75%;
+    scroll-snap-align: center;
+  }
+
+}

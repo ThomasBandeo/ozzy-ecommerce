@@ -1,17 +1,29 @@
-document.querySelector(".login-form").addEventListener("submit", e => {
-  e.preventDefault();
+import { ensureCartNotEmpty } from "./cart.js";
 
-  const email = document.querySelector("#email").value;
+document.addEventListener("DOMContentLoaded", () => {
+  if (!ensureCartNotEmpty()) return;
 
-  // login fake
-  localStorage.setItem("user", JSON.stringify({
-    email,
-    type: "member"
-  }));
+  const form = document.querySelector(".login-form");
+  const backBtn = document.querySelector(".continue-shopping");
 
-  window.location.href = "checkout.html";
-});
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-document.querySelector(".continue-shopping").addEventListener("click", () => {
-  window.location.href = "checkout.html";
+      const email = document.querySelector("#email").value;
+
+      localStorage.setItem("user", JSON.stringify({
+        email,
+        type: "member"
+      }));
+
+      window.location.href = "checkout.html";
+    });
+  }
+
+  if (backBtn) {
+    backBtn.addEventListener("click", () => {
+      window.location.href = "checkout.html";
+    });
+  }
 });

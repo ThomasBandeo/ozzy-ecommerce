@@ -4,21 +4,24 @@ import { disminuirCantidad } from "./cart.js";
 import { eliminarProducto } from "./cart.js";
 
 export function renderCheckout() {
+  const container = document.querySelector(".section-cart");
+  const actions = document.querySelector(".summary-actions");
+
+  if (!container || !actions) return;
+
   const cart = getCart();
-  const tbody = document.querySelector(".tbody");
   const subtotal = calcularTotales(cart);
   const envio = calcularEnvio(subtotal);
-  const actions = document.querySelector(".summary-actions");
+  
 
   if (cart.length === 0) {
     actions.classList.add("disabled");
 
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="6">Tu carrito está vacío</td>
-      </tr>
+    container.innerHTML = `
+      <div class="empty-checkout">
+        Tu carrito está vacío
+      </div>
     `;
-
     actualizarResumen(0,0);
     return;
   }
@@ -29,79 +32,85 @@ export function renderCheckout() {
 
   cart.forEach(item => {
     html += `
-      <tr class="cart-row">
-        <td class="checkout-image" data-label="Producto">
-          <img src="${item.image}" alt="${item.title}">
-        </td>
 
-        <td data-label="Descripción">
-          ${item.title}
-        </td>
+      <div class="cart-item-checkout checkout-grid">
 
-        <td data-label="Precio">
-          $${item.price}
-        </td>
+      <div class="cart-col product-col">
+        <img src="${item.image}" alt="${item.title}">
+        <div class="product-info">
+          <p class="product-title">${item.title}</p>
+          <p class="product-variant">
+            Talle: ${item.size}
+          </p>
+        </div>
+      </div>
 
-        <td data-label="Cantidad">
-          <div class="cart-item-qty">
-            <button 
-              class="cart-item-qty-left" 
-              data-id="${item.id}" 
-              data-size="${item.size}">
-              −
-            </button>
+      <div class="cart-col price-col">
+        $${item.price.toLocaleString("es-AR")}
+      </div>
 
-            <span>${item.quantity}</span>
+      <div class="cart-item-qty">
+        <button class="cart-item-qty-left" data-id="${item.id}" data-size="${item.size}">-</button>
+        <span> ${item.quantity} </span>
+        <button class="cart-item-qty-right" data-id="${item.id}" data-size="${item.size}">+</button>
+      </div>
 
-            <button 
-              class="cart-item-qty-right" 
-              data-id="${item.id}" 
-              data-size="${item.size}">
-              +
-            </button>
-          </div>
-        </td>
+      <div class="cart-col subtotal-col">
+        $${(item.price * item.quantity).toLocaleString("es-AR")}
+      </div>
 
-        <td data-label="Subtotal">
-          $${item.price * item.quantity}
-        </td>
+      <div class="cart-col remove-col">
+        <button class="cart-item-remove" data-id="${item.id}" data-size="${item.size}">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="18" 
+            height="18" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="1.5" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+          >
+            <path d="M3 6h18" />
+            <path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2" />
+            <path d="M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14" />
+            <line x1="10" y1="11" x2="10" y2="18" />
+            <line x1="14" y1="11" x2="14" y2="18" />
+          </svg>
+        </button>   
+      </div>
 
-        <td data-label="Eliminar">
-          <button 
-            class="cart-item-remove" 
-            data-id="${item.id}" 
-            data-size="${item.size}">
-            🗑
-          </button>
-        </td>
-      </tr>
-    `;
+    </div>
+  `;
   });
 
-  tbody.innerHTML = html;
+  container.innerHTML = html;
 
   actualizarResumen(subtotal,envio);
 }
 
 
 export function initCheckoutEvents() {
-  const tbody = document.querySelector(".tbody");
-  if (!tbody) return;
+  const container = document.querySelector(".section-cart");
+  if (!container) return;
 
-  tbody.addEventListener("click", (e) => {
-    const productId = e.target.dataset.id;
-    const size = e.target.dataset.size;
+  container.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
 
-    if (e.target.classList.contains("cart-item-qty-right")) {
-      incrementarCantidad(productId, size);
+    const { id, size } = btn.dataset;
+
+   if (btn.classList.contains("cart-item-qty-right")) {
+      incrementarCantidad(id, size);
     }
 
-    if (e.target.classList.contains("cart-item-qty-left")) {
-      disminuirCantidad(productId, size);
+    if (btn.classList.contains("cart-item-qty-left")) {
+      disminuirCantidad(id, size);
     }
 
-    if (e.target.classList.contains("cart-item-remove")) {
-      eliminarProducto(productId, size);
+    if (btn.classList.contains("cart-item-remove")) {
+      eliminarProducto(id, size);
     }
   });
 }
@@ -123,10 +132,10 @@ function calcularEnvio(subtotal) {
 function actualizarResumen(subtotal, envio) {
   const total = subtotal + envio;
 
-  document.querySelector(".subtotal-price").textContent = `$${subtotal}`;
+  document.querySelector(".subtotal-price").textContent =`$${subtotal.toLocaleString("es-AR")}`;
   document.querySelector(".shipping-price").textContent =
     envio === 0 ? "Gratis" : `$${envio}`;
-  document.querySelector(".total-price").textContent = `$${total}`;
+  document.querySelector(".total-price").textContent = `$${total.toLocaleString("es-AR")}`;
 }
 
 
@@ -171,7 +180,7 @@ function handleLoggedUser() {
   if (!user) return;
 
   const memberBtn = document.querySelector(".btn-member");
-  const guestBtn = document.querySelector(".btn-secondary");
+  const guestBtn = document.querySelector(".btn-guest");
 
   // Cambiar texto del botón
   memberBtn.textContent = `Continuar como ${user.email}`;
@@ -189,36 +198,40 @@ function handleLoggedUser() {
 }
 
 
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("continue-shopping")) {
-    window.location.href = `index.html`;
-  }
+function initCheckoutActions() {
+  const actions = document.querySelector(".summary-actions");
+  if (!actions) return;
 
-  if (e.target.classList.contains("btn-member")) {
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    if (user) {
-      // Ya está logueado → finalizar compra
-      alert("Compra realizada con éxito 🎉");
-      localStorage.removeItem("cart");
+  actions.addEventListener("click", (e) => {
+    if (e.target.classList.contains("continue-shopping")) {
       window.location.href = "index.html";
-    } else {
-      // No logueado → login
-      window.location.href = "login.html";
     }
-  }
 
-  if (e.target.classList.contains("btn-secondary")) {
-    // comprar como invitado
-    window.location.href = "checkout-guest.html";
-  }
+    if (e.target.classList.contains("btn-member")) {
+      const user = JSON.parse(localStorage.getItem("user"));
 
-});
+      if (user) {
+        alert("Compra realizada con éxito 🎉");
+        localStorage.removeItem("cart");
+        window.location.href = "index.html";
+      } else {
+        window.location.href = "login.html";
+      }
+    }
+
+    if (e.target.classList.contains("btn-guest")) {
+      window.location.href = "checkout-guest.html";
+    }
+  });
+}
 
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (!document.querySelector(".checkout-page")) return;
+  
   renderCheckout();
   initCheckoutEvents();
   initShippingCalculator();
   handleLoggedUser(); 
+  initCheckoutActions();
 });

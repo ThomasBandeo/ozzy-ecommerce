@@ -17,3 +17,10 @@
         pointer-events: all;
     }
 }
+
+
+@media (min-width: 769px) {
+  .overlay {
+    display: none;
+  }
+}

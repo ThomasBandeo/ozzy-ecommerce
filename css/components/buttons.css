@@ -1,60 +1,109 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: "Helvetica-Neue", "Helvetica", sans-serif;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 48px;
+  background: #111;
+  color: #fff;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid #111;
+}
+
+.btn-secondary {
+  width: 100%;
+  height: 48px;
+  background: #fff;
+  color: #111;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid #111;
+}
+
+.btn-text {
+  color: #757575;
+  font-size: 14px;
+  background: none;
+  border: none;
+}
+
+.hero-btn {
+  padding: 0.9rem 2.2rem;
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text-inverse);
+  letter-spacing: 2px;
+  font-size: var(--font-xs);
+  text-transform: uppercase;
+}
+
+.hero-btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.view-btn {
+  margin: 20px auto 0; 
+  padding: 0.6rem 1.6rem;
+  border: 1px solid var(--color-border-default);
+  background: #fff;
+  font-size: var(--font-sm);
+  border-radius: 4px;
+}
+
+.view-btn:hover {
+  border-color: #000;
+}
+
 .icon-btn {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.1rem;
   padding: 0.25rem;
+  width: 30px;
+  height: 30px;
 }
 
 .icon-btn:hover {
   opacity: 0.7;
 }
 
-.view-btn {
-  margin-top: 14px;
-  width: 100%;
-  background: #000;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  padding: 1rem 0;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease; 
-}
-
-.view-btn:hover {
-  background-color: #333;
-}
-
-
 .add-cart-btn {
   margin-top: 1rem;
-  padding: 0.9rem;
-  border-radius: 30px;
-  font-size: 0.95rem;
-  background: #111;
-  color: #fff;
+  transition: background 0.25s ease, transform 0.15s ease;
   border: none;
-  cursor: pointer;
+}
+
+.add-cart-btn:hover:not(:disabled) {
+  background: #111;
+  transform: translateY(-1px);
 }
 
 .add-cart-btn:hover {
   opacity: 0.9;
 }
 
-
 .btn-buys{
-  display: block;        /* 🔑 */
-  margin: 1rem auto;     /* 🔑 */
-  padding: 0.9rem;
-  border-radius: 30px;
-  font-size: 0.95rem;
-  background: #111;
-  color: #fff;
+  margin: 1rem auto;     
   border: none;
-  cursor: pointer;
-  border-radius: 30px;
   width: 90%;
+}
+
+.summary-actions.disabled .btn-primary,
+.summary-actions.disabled .btn-secondary {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 
@@ -64,8 +113,11 @@
       margin-bottom: 5px;
   }
 
-  .view-btn {
-    padding: 0.7rem 0;
+  .search-icon{
+    display: none;
   }
 
+  .view-btn{
+    margin: 20px 0px;
+  }
 }
