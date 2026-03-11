@@ -1,7 +1,7 @@
 /* CONTENEDOR PRINCIPAL */
 .guest-checkout-container {
   max-width: 500px;
-  margin: 60px auto;
+  margin: 80px auto;
   padding: 30px;
   border: 1px solid var(--color-border-default);
   border-radius: 8px;
@@ -70,4 +70,13 @@
 .guest-checkout-container .continue-shopping {
   display: block;
   margin: 15px auto 0;
+}
+
+
+@media (max-width: 768px) {
+  
+  .guest-checkout-container {
+    margin: 40px auto;
+  }
+
 }

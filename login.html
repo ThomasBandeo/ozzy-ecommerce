@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Iniciar sesión | OZZY</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <main class="login-container">
-
+  
+  <main class="login-container">
     <h1>Iniciar sesión</h1>
     <p class="login-subtitle">
       Comprá más rápido ingresando a tu cuenta
@@ -21,6 +21,7 @@
         <input 
           type="email" 
           id="email" 
+          name="email"
           placeholder="ejemplo@mail.com" 
           required
         />
@@ -31,6 +32,7 @@
         <input 
           type="password" 
           id="password" 
+          name="password"
           placeholder="********" 
           required
         />
@@ -50,9 +52,8 @@
     <button class="btn btn-text continue-shopping">
       Volver al carrito
     </button>
-
   </main>
 
-  <script type="module" src="js/ui/login.js"></script>
+  <script type="module" src="js/pages/login.js"></script>
 </body>
 </html>

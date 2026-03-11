@@ -1,18 +1,155 @@
-## OZYY – Ecommerce de indumentaria
+# OZZY E-commerce
 
-Proyecto personal de ecommerce desarrollado con HTML, CSS y JavaScript vanilla.
-Inspirado en tiendas de streetwear como Nike.
+Proyecto de **tienda online frontend** desarrollado con **HTML, CSS y JavaScript modular (ES Modules)**.
+El objetivo del proyecto es simular una experiencia de e-commerce moderna con catálogo de productos, carrito de compras y flujo de checkout.
 
-### Funcionalidades
-- Listado de productos dinámico
-- Carrito de compras persistente (localStorage)
-- Checkout con resumen de compra
-- Diseño responsive
+---
 
-### Tecnologías
-- HTML5
-- CSS3
-- JavaScript (ES6 Modules)
+## Demo
 
-### Objetivo
-Proyecto realizado como práctica final de la carrera TUDAI.
+Este proyecto incluye:
+
+* Página principal con productos destacados
+* Página de producto dinámica
+* Carrito de compras persistente
+* Flujo de checkout
+* Sistema básico de login y registro
+
+---
+
+## Funcionalidades
+
+### Catálogo de productos
+
+* Render dinámico de productos desde un archivo de datos.
+* Filtrado por categorías.
+* Cards de producto generadas con JavaScript.
+
+### Página de producto
+
+* Carga dinámica según `id` en la URL.
+* Galería de imágenes.
+* Selección de talles.
+* Agregar producto al carrito.
+
+### Carrito de compras
+
+* Agregar productos con talle seleccionado.
+* Incrementar / disminuir cantidad.
+* Eliminar productos.
+* Cálculo automático del total.
+* Persistencia con **localStorage**.
+
+### Checkout
+
+* Página de checkout para usuarios registrados.
+* Opción de compra como invitado.
+* Página de confirmación de compra.
+
+### Autenticación simulada
+
+* Registro de usuario.
+* Login básico.
+* Persistencia del usuario en **localStorage**.
+
+---
+
+## Arquitectura del proyecto
+
+El proyecto está organizado en módulos para mantener una estructura clara y escalable.
+
+```
+js/
+│
+├── components
+│   ├── headerComponent.js
+│   ├── footerComponent.js
+│   ├── benefitComponent.js
+│   └── cartOverlayComponent.js
+│
+├── data
+│   └── products.js
+│
+├── layout
+│   └── layout.js
+│
+├── pages
+│   ├── product.js
+│   ├── hombre.js
+│   ├── login.js
+│   ├── register.js
+│   ├── checkout-page.js
+│   ├── checkout-guest.js
+│   └── checkout-success.js
+│
+├── services
+│   └── cartServices.js
+│
+├── ui
+│   ├── cart.js
+│   ├── header.js
+│   └── renderProducts.js
+│
+└── main.js
+```
+
+---
+
+## Tecnologías utilizadas
+
+* HTML5
+* CSS3
+* JavaScript (ES Modules)
+* LocalStorage API
+
+---
+
+## Organización de assets
+
+```
+assets/
+ └ images
+    ├ products
+    ├ hero
+    └ icons
+```
+
+Las imágenes de productos se cargan dinámicamente desde el archivo de datos.
+
+---
+
+## Mejoras implementadas
+
+* Lazy loading en imágenes (`loading="lazy"`)
+* Render dinámico de productos
+* Arquitectura modular
+* Separación entre lógica de UI y servicios
+
+---
+
+## Objetivo del proyecto
+
+Este proyecto fue desarrollado como práctica para:
+
+* trabajar con **JavaScript modular**
+* manejar **estado de aplicación en frontend**
+* simular un flujo completo de **e-commerce**
+* mejorar la **organización y escalabilidad del código**
+
+---
+
+## Posibles mejoras futuras
+
+* Integración con una API real
+* Sistema de autenticación real
+* Pasarela de pago
+* Búsqueda de productos
+* Filtros avanzados
+* Responsive improvements
+
+---
+
+## Autor
+
+Desarrollado como proyecto de práctica de **Frontend Development**.
+

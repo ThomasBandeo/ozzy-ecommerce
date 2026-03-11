@@ -1,0 +1,15 @@
+.page-hombre{
+    margin-top: var(--header-height);
+}
+
+.page-hombre .products {
+    padding: 3rem 4rem;
+}
+
+@media (max-width: 768px) {
+
+    .page-hombre .products {
+        padding: 1rem;
+    }
+
+}

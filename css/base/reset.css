@@ -54,8 +54,8 @@ body {
      COMPONENT COLORS
   ========================== */
   --color-quantity-bg: #034222;
-  --color-sale-bg:#c0392b; 
   --color-eliminate:#c62828;
+  --color-logged: rgb(12, 184, 12);
 
   /* ==========================
      BORDERS

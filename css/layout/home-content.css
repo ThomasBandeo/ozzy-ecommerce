@@ -1,14 +1,14 @@
 /* ------ HERO ------ */
 .hero {
-  margin-top: var(--header-height);
-  min-height: calc(100vh - var(--header-height));
-  background-image: url("../../img/img3.jpg");
+  height: 100vh;
+  background-image: url("/assets/images/hero/img3.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  background-repeat: no-repeat;
 }
 
 .hero::before {
@@ -57,13 +57,8 @@
   text-align: center;
   font-size: var(--font-xl);
   font-weight: var(--weight-regular);
-  letter-spacing: 2px;
-  text-transform:capitalize;
-}
-
-.sale-highlight {
-  color: var(--color-sale-bg);
-  font-weight: var(--weight-bold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
 .products-grid {
@@ -76,13 +71,14 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border-light);
   padding: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
 }
 
 .product-card:hover .view-btn {
@@ -115,14 +111,17 @@
 
 .product-info h4 {
   font-size: var(--font-md);
-  white-space: nowrap;
+  text-transform:capitalize;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;  /* máximo 1 líneas */
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: break-all; 
 }
 
-.category {
+.badge {
   font-size: var(--font-xs);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   color: var(--color-text-muted);
   text-transform: uppercase;
 }
@@ -141,8 +140,8 @@ section {
 .benefits {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  padding: 4rem;
+  gap: 3rem;
+  padding: 5rem 4rem;
   background-color: var(--color-benefits);
   border-top: 1px solid var(--color-border-light);
   border-bottom: 1px solid var(--color-border-light);
@@ -152,20 +151,27 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  gap: 0.9rem;
+  text-align: center;
+  transition: transform 0.25s ease;
 }
 
 .benefit:hover {
-  transform: translateY(-2px);
-  opacity: 0.85;
+  transform: translateY(-4px);
 }
 
 .benefit svg {
-  width: 22px;
-  height: 22px;
-  margin-bottom: 0.75rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.03);
   color: var(--color-text);
+}
+
+.benefit p {
+  font-size: var(--font-md);
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .no-scroll {
