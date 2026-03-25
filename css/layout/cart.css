@@ -5,7 +5,7 @@
   background: rgba(0,0,0,0.45);
   display: none; 
   justify-content: flex-end;
-  z-index: 999;
+  z-index: 1001;
 }
 
 /* PANEL */
@@ -14,8 +14,6 @@
   background: var(--color-background);
   padding: 1.5rem;
   animation: slideIn 0.3s ease;
-  height: calc(100vh - var(--header-height));
-  margin-top: var(--header-height);
   position: relative; /* 🔑 para posicionar la X */
   display: flex;
   flex-direction: column;
@@ -56,8 +54,8 @@
 }
 
 .cart-item-image img {
-  width: 120px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
 }
 
@@ -67,6 +65,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 3px;
+  gap: 4px;
 }
 
 .cart-item-info p{
@@ -74,7 +73,7 @@
 }
 
 .cart-item-title {
-  font-size: var(--font-md);
+  font-size: var(--font-sm);
   font-weight: var(--weight-medium);
   display: -webkit-box;
   -webkit-line-clamp: 2;

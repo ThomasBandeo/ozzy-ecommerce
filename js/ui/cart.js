@@ -1,54 +1,29 @@
-import { renderCheckout } from "./checkout.js";
-
-export function getCart() {
-  return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-export function addToCart(product) {
-  const cart = getCart();
-
-  const existingProduct = cart.find(item =>
-    item.id === product.id &&
-    item.size === product.size
-  );
-
-  if (existingProduct) {
-    existingProduct.quantity += 1;
-  } else {
-    cart.push({
-      ...product,
-      quantity: 1
-    });
-  }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-export function closeCart() {
-  const overlay = document.querySelector(".cart-overlay");
-  overlay.classList.remove("active");
-}
+import {
+  getCart,
+  incrementarCantidad,
+  disminuirCantidad,
+  eliminarProducto,
+  calcularCantidadTotal,
+  calcularTotalPrice
+} from "../services/cartServices.js";
 
 export function renderCart() {
   const cart = getCart();
 
   const overlay = document.querySelector(".cart-overlay");
+  if (!overlay) return;
   const itemsContainer = document.querySelector(".cart-items");
-  const closeBtn = overlay.querySelector(".cart-close");
+  if (!itemsContainer) return;
+
   const totalPrice = overlay.querySelector(".cart-total-price");
   const cartTotal = overlay.querySelector(".cart-total");
-  const cartEmpty = document.querySelector(".cart-empty ");
-
-
-  overlay.classList.add("active");
+  const cartEmpty = document.querySelector(".cart-empty");
 
   if (cart.length === 0) {
     cartEmpty.classList.remove("hidden");
     itemsContainer.classList.add("hidden");
     cartTotal.classList.add("hidden");
-
     totalPrice.textContent = "$0";
-    closeBtn.addEventListener("click", closeCart);
     return;
   }
 
@@ -75,13 +50,27 @@ export function renderCart() {
 
         <div class="cart-item-price">
           <div class="cart-item-qty">
-            <button class="cart-item-qty-left" data-id="${item.id}" data-size="${item.size}">-</button>
-            <span> ${item.quantity} </span>
-            <button class="cart-item-qty-right" data-id="${item.id}" data-size="${item.size}">+</button>
+            <button 
+              class="cart-item-qty-left" 
+              aria-label="Disminuir cantidad"
+              data-id="${item.id}" 
+              data-size="${item.size}">
+              -
+            </button>
+
+            <span aria-live="polite">${item.quantity}</span>
+
+            <button 
+              class="cart-item-qty-right" 
+              aria-label="Aumentar cantidad"
+              data-id="${item.id}" 
+              data-size="${item.size}">
+              +
+            </button>
           </div>
             
-          <button class="cart-item-remove" data-id="${item.id}" data-size="${item.size}">
-            <svg 
+          <button class="cart-item-remove" aria-label="Eliminar producto" data-id="${item.id}" data-size="${item.size}">
+            <svg aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg" 
               width="18" 
               height="18" 
@@ -107,122 +96,65 @@ export function renderCart() {
   itemsContainer.innerHTML = html;
 
   totalPrice.textContent = "$" + calcularTotalPrice().toLocaleString("es-AR");
-
-  closeBtn.addEventListener("click", closeCart);
-
 }
 
 export function initCartEvents() {
   const itemsContainer = document.querySelector(".cart-items");
 
-  if (!itemsContainer) return;
+  if (itemsContainer) {
+    itemsContainer.addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
 
-  itemsContainer.addEventListener("click", (e) => {
+      const { size } = btn.dataset;
+      const id = Number(btn.dataset.id);
+      let updated = false;
 
-    const btn = e.target.closest("button");
-    if (!btn) return;
+      if (btn.classList.contains("cart-item-qty-right")) {
+        incrementarCantidad(id, size);
+        updated = true;
+      }
 
-    const { id, size } = btn.dataset;
+      if (btn.classList.contains("cart-item-qty-left")) {
+        disminuirCantidad(id, size);
+        updated = true;
+      }
 
-    if (btn.classList.contains("cart-item-qty-right")) {
-      incrementarCantidad(id, size);
-    }
+      if (btn.classList.contains("cart-item-remove")) {
+        eliminarProducto(id, size);
+        updated = true;
+      }
 
-    if (btn.classList.contains("cart-item-qty-left")) {
-      disminuirCantidad(id, size);
-    }
-
-    if (btn.classList.contains("cart-item-remove")) {
-      eliminarProducto(id, size);
-    }
-  });
-}
-
-
-export function incrementarCantidad(productId,size) {
-  const cart = getCart();
-
-  const product = cart.find(item =>
-    item.id == productId && item.size === size
-  );
-
-  if (!product) return;
-
-  product.quantity += 1;
- 
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  refreshUI();
-  updateCartQuantityUI();
-}
-
-export function disminuirCantidad(productId,size) {
-  const cart = getCart();
-
-  const product = cart.find(item =>
-    item.id == productId && item.size === size
-  );
-
-  if (!product) return;
-
-  product.quantity -= 1;
-
-  if (product.quantity <= 0) {
-    eliminarProducto(productId, size);
-    return;
+      if (updated) {
+        updateCartQuantityUI();
+        renderCart();
+      }
+    });
   }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  // Nuevo listener, pero separado
+  const cartContainer = document.querySelector(".cart");
+  if (cartContainer) {
+    cartContainer.addEventListener("click", e => {
 
-  refreshUI();
-  updateCartQuantityUI();
-}
+      // Botón finalizar compra
+      const checkoutBtn = e.target.closest(".btn-buys");
+      if (checkoutBtn) {
+        closeCart();
+        window.location.href = "checkout-page.html";
+        return;
+      }
 
-export function eliminarProducto(productId,size) {
-  let cart = getCart();
+      // Botón ver productos cuando está vacío
+      const viewBtn = e.target.closest(".view-btn");
+      if (viewBtn) {
+        closeCart();
+        window.location.href = "index.html#sale";
+        return;
+      }
 
-  cart = cart.filter(item =>
-    !(item.id == productId && item.size === size)
-  );
-  
-  localStorage.setItem("cart", JSON.stringify(cart));
-  
-  refreshUI();
-  updateCartQuantityUI();
-}
-
-
-function refreshUI() {
-  if (document.querySelector(".checkout-page")) {
-    renderCheckout();
-  } else {
-    renderCart();
+    });
   }
-}
-
-
-function calcularTotalPrice() {
-  const cart = getCart();
-
-  let total = 0;
-
-  cart.forEach(item => {
-    total += item.price * item.quantity;
-  });
-
-  return total;
-}
-
-export function calcularCantidadTotal() {
-  const cart = getCart();
-
-  let total = 0;
-
-  cart.forEach(item => {
-    total += item.quantity;
-  });
-
-  return total;
 }
 
 export function updateCartQuantityUI() {
@@ -236,13 +168,23 @@ export function updateCartQuantityUI() {
   } else {
     quantityEl.style.display = "flex";
     quantityEl.textContent = total;
-
   }
 }
 
+export function closeCart() {
+  const cart = document.querySelector(".cart-overlay");
+  const overlay = document.querySelector(".overlay");
+
+  if (cart) {
+    cart.classList.remove("active");
+  }
+  if (overlay) {
+    overlay.classList.remove("active");
+  }
+}
 
 export function ensureCartNotEmpty() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cart = getCart();
 
   if (cart.length === 0) {
     alert("No hay productos en el carrito");
@@ -253,13 +195,3 @@ export function ensureCartNotEmpty() {
   return true;
 }
 
-const cartContainer = document.querySelector(".cart");
-  if (cartContainer) {
-    cartContainer.addEventListener("click", e => {
-      const btn = e.target.closest(".view-btn");
-      if (!btn) return;
-
-      window.location.href = "index.html#sale";
-      closeCart();
-  });
-}

@@ -76,6 +76,7 @@
   font-weight: var(--weight-medium);
   line-height: 1.25;
   color: var(--color-text);
+  text-transform:capitalize;
 }
 
 .product-price {

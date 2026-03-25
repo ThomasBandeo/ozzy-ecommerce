@@ -11,11 +11,14 @@
 @import url("layout/cart.css");
 
 /* Pages */
-@import url("pages/checkout.css");
+@import url("pages/checkout-pages.css");
 @import url("pages/login.css");
 @import url("pages/checkout-guest.css");
-@import url("pages/register.css");
 @import url("pages/product.css");
+@import url("pages/checkout-success.css");
+@import url("pages/hombre.css");
+
+
 
 /* Components */
 @import url("components/buttons.css");

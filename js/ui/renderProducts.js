@@ -1,37 +1,50 @@
 import { products } from "../data/products.js";
 
-export function renderProducts(container) {
+export function renderProducts(container, category = null) {
+
+  let filteredProducts = products;
+
+  // si viene una categoría, filtramos
+  if (category) {
+    filteredProducts = products.filter(p => p.category === category);
+  }
 
   let html = "";
 
-  products.forEach(product => {
+  filteredProducts.forEach(product => {
+    const price = new Intl.NumberFormat("es-AR", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(product.price);
+
     html += `
-      <article class="product-card">
+      <article class="product-card" data-id="${product.id}">
         <div class="product-image">
-          <img src="${product.image}" alt="${product.title}">
+          <img loading="lazy" src="${product.mainImage}" alt="${product.title}">
         </div>
         <div class="product-info">
           <h4>${product.title}</h4>
-          <p class="category">${product.category}</p>
-          <span class="price">$${product.price.toLocaleString()}</span>
-          <button class="btn view-btn" data-id="${product.id}">
-            Ver Producto
-          </button>
+          ${product.badge ? `<p class="badge">${product.badge}</p>` : ""}
+          <span class="price">$${price}</span>
         </div>
       </article>
     `;
   });
 
   container.innerHTML = html;
-
 }
 
-const productsGrid = document.getElementById("productsGrid");
-// ✅ Listener local y delegado
-  productsGrid.addEventListener("click", e => {
-    const btn = e.target.closest(".view-btn");
-    if (!btn) return;
 
-    const id = btn.dataset.id;
+export function initProductGridEvents(container) {
+
+  container.addEventListener("click", e => {
+
+    const card = e.target.closest(".product-card");
+    if (!card) return;
+
+    const id = card.dataset.id;
+
     window.location.href = `product.html?id=${id}`;
   });
+
+}
