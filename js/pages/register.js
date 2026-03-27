@@ -15,13 +15,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = formData.get("password");
       const confirmPassword = formData.get("confirmPassword");
 
+      const passwordError = document.getElementById("passwordError");
+      const confirmError = document.getElementById("confirmPasswordError");
+
+      passwordError.textContent = "";
+      confirmError.textContent = "";
+
       if (password.length < 6) {
-        alert("La contraseña debe tener al menos 6 caracteres");
+        passwordError.textContent = "Mínimo 6 caracteres";
         return;
       }
 
       if (password !== confirmPassword) {
-        alert("Las contraseñas no coinciden");
+        confirmError.textContent = "Las contraseñas no coinciden";
         return;
       }
 
@@ -42,5 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "checkout-page.html";
     });
   }
+
 
 });

@@ -17,8 +17,7 @@
 @import url("pages/product.css");
 @import url("pages/checkout-success.css");
 @import url("pages/hombre.css");
-
-
+@import url("pages/register.css");
 
 /* Components */
 @import url("components/buttons.css");

@@ -38,13 +38,11 @@ export function renderProducts(container, category = null) {
 export function initProductGridEvents(container) {
 
   container.addEventListener("click", e => {
-
     const card = e.target.closest(".product-card");
     if (!card) return;
 
     const id = card.dataset.id;
-
-    window.location.href = `product.html?id=${id}`;
+    window.location.href = `/product.html?id=${id}`;
   });
 
 }

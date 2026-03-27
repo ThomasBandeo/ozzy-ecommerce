@@ -134,12 +134,12 @@
 }
 
 .size-btn:hover {
-  border-color: var(--color-border-contrast);
+  border-color: var(--color-primary);
 }
 
 .size-btn.active {
-  border-color: var(--color-border-contrast);
-  background: var(--color-border-contrast);
+  border-color: var(--color-primary);
+  background: var(--color-primary);
   color: var(--color-text-inverse);
   transform: scale(1.03);
 }
@@ -149,6 +149,7 @@
   background: #ddd;
   color: var(--color-text-muted);
   cursor: not-allowed;
+  border: none;
 }
 
 .add-cart-btn.added {

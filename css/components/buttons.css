@@ -81,7 +81,6 @@
 .add-cart-btn {
   margin-top: 1rem;
   transition: background 0.25s ease, transform 0.15s ease;
-  border: none;
 }
 
 .add-cart-btn:hover:not(:disabled) {
@@ -95,7 +94,6 @@
 
 .btn-buys{
   margin: 1rem auto;     
-  border: none;
   width: 90%;
 }
 
