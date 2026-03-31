@@ -1,11 +1,19 @@
 # OZZY E-commerce
 
-Proyecto de **tienda online frontend** desarrollado con **HTML, CSS y JavaScript modular (ES Modules)**.
+Proyecto de **tienda online frontend** desarrollado con **HTML, CSS y JavaScript modular (ES Modules)**.  
 El objetivo del proyecto es simular una experiencia de e-commerce moderna con catálogo de productos, carrito de compras y flujo de checkout.
 
 ---
 
 ## Demo
+
+Podés ver el proyecto online acá:
+
+👉 https://ozzy-ecommerce.vercel.app/
+
+---
+
+## Descripción
 
 Este proyecto incluye:
 
@@ -54,11 +62,20 @@ Este proyecto incluye:
 
 ---
 
+## Catálogo por categorías
+
+El proyecto incluye una sección de catálogo para "Hombres", donde se implementa un listado completo de productos con navegación hacia la página de detalle.
+
+Esta sección funciona como ejemplo de cómo escalar el catálogo a otras categorías (como "Mujeres" o "Niños"), reutilizando la misma lógica de renderizado y estructura modular.
+
+Actualmente, las demás categorías no están implementadas, ya que el objetivo del proyecto es demostrar el funcionamiento completo con una única categoría.
+
+---
+
 ## Arquitectura del proyecto
 
 El proyecto está organizado en módulos para mantener una estructura clara y escalable.
 
-```
 js/
 │
 ├── components
@@ -91,7 +108,7 @@ js/
 │   └── renderProducts.js
 │
 └── main.js
-```
+
 
 ---
 
@@ -104,15 +121,20 @@ js/
 
 ---
 
-## Organización de assets
+## Decisiones técnicas
 
-```
+* Se utilizó JavaScript modular (ES Modules) para estructurar la aplicación en módulos independientes, facilitando la escalabilidad y el mantenimiento del código.
+* Se separó la lógica en capas: UI, servicios y datos.
+* Se utilizó LocalStorage para simular persistencia sin backend.
+
+---
+
+## Organización de assets
 assets/
- └ images
+└ images
     ├ products
     ├ hero
     └ icons
-```
 
 Las imágenes de productos se cargan dinámicamente desde el archivo de datos.
 
@@ -127,17 +149,6 @@ Las imágenes de productos se cargan dinámicamente desde el archivo de datos.
 
 ---
 
-## Objetivo del proyecto
-
-Este proyecto fue desarrollado como práctica para:
-
-* trabajar con **JavaScript modular**
-* manejar **estado de aplicación en frontend**
-* simular un flujo completo de **e-commerce**
-* mejorar la **organización y escalabilidad del código**
-
----
-
 ## Posibles mejoras futuras
 
 * Integración con una API real
@@ -149,7 +160,17 @@ Este proyecto fue desarrollado como práctica para:
 
 ---
 
+## Objetivo del proyecto
+
+Este proyecto fue desarrollado como práctica para:
+
+* trabajar con **JavaScript modular**
+* manejar **estado de aplicación en frontend**
+* simular un flujo completo de **e-commerce**
+* mejorar la **organización y escalabilidad del código**
+
+---
+
 ## Autor
 
 Desarrollado como proyecto de práctica de **Frontend Development**.
-
