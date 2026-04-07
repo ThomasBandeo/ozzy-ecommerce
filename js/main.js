@@ -3,7 +3,7 @@ import { initHeader } from "./ui/header.js";
 import { initCartEvents } from "./ui/cart.js";
 import { renderLayout } from "./layout/layout.js";
 
-function initHomePage() {
+async function initHomePage() {
 
   renderLayout({
     showFooter: true,
@@ -15,7 +15,7 @@ function initHomePage() {
   const productsGrid = document.getElementById("productsGrid");
 
   if (productsGrid) {
-    renderProducts(productsGrid, "sale");
+    await renderProducts(productsGrid, "sale");
     initProductGridEvents(productsGrid);
   }
 

@@ -21,14 +21,14 @@
     border-bottom: 1px solid var(--color-border-light);
 }
 
-/* Home arriba (hero) → hamburguesa blanca */
-.home .header:not(.scrolled) .menu-toggle {
-    color: var(--color-text-inverse);
+/* hamburguesa blanca en home arriba */
+.home .header:not(.scrolled) .menu-toggle span {
+    background-color: white;
 }
 
-/* Cuando hace scroll o abrís menú → vuelve a negro */
-.header.scrolled .menu-toggle {
-    color: var(--color-text);
+/* hamburguesa negra cuando scrollea */
+.header.scrolled .menu-toggle span {
+    background-color: black;
 }
 
 .icon-btn {

@@ -1,17 +1,27 @@
-import { products } from "../data/products.js";
+import { getProducts } from "../services/productServices.js";
 
-export function renderProducts(container, category = null) {
 
-  let filteredProducts = products;
 
-  // si viene una categoría, filtramos
-  if (category) {
-    filteredProducts = products.filter(p => p.category === category);
+export async function renderProducts(container, category = null) {
+  const message = document.getElementById("productsMessage");
+  let products = await getProducts();
+  
+  // error o vacío
+  if (!products || products.length === 0) {
+    message.innerHTML = `<p class="page-error"> 😕 No pudimos cargar los productos. Intentá nuevamente. </p>`;
+    container.innerHTML = "";
+    return;
   }
 
+  // filtro por categoría
+  if (category) {
+    products = products.filter(p => p.category === category);
+  }
+
+  message.innerHTML = "";
   let html = "";
 
-  filteredProducts.forEach(product => {
+  products.forEach(product => {
     const price = new Intl.NumberFormat("es-AR", {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
@@ -33,7 +43,6 @@ export function renderProducts(container, category = null) {
 
   container.innerHTML = html;
 }
-
 
 export function initProductGridEvents(container) {
 

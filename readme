@@ -25,11 +25,26 @@ Este proyecto incluye:
 
 ---
 
+## Integración con API
+
+Los productos se obtienen desde una API externa simulada utilizando MockAPI:
+
+👉 https://69cc08610b417a19e07bb791.mockapi.io/products
+
+Se implementaron:
+
+* Fetch de todos los productos
+* Fetch por ID para la página de detalle
+* Manejo de errores HTTP (404, 500)
+* Manejo de estados vacíos
+
+---
+
 ## Funcionalidades
 
 ### Catálogo de productos
 
-* Render dinámico de productos desde un archivo de datos.
+* Render dinámico de productos desde una API (MockAPI).
 * Filtrado por categorías.
 * Cards de producto generadas con JavaScript.
 
@@ -100,6 +115,7 @@ js/
 │   └── checkout-success.js
 │
 ├── services
+│   ├── productServices.js
 │   └── cartServices.js
 │
 ├── ui
@@ -118,6 +134,8 @@ js/
 * CSS3
 * JavaScript (ES Modules)
 * LocalStorage API
+* Fetch API
+* MockAPI
 
 ---
 
@@ -136,27 +154,30 @@ assets/
     ├ hero
     └ icons
 
-Las imágenes de productos se cargan dinámicamente desde el archivo de datos.
+Las imágenes de productos se cargan dinámicamente desde la API.
 
 ---
 
 ## Mejoras implementadas
 
 * Lazy loading en imágenes (`loading="lazy"`)
-* Render dinámico de productos
+* Render dinámico de productos desde API
 * Arquitectura modular
 * Separación entre lógica de UI y servicios
+* Diseño responsive (mobile-first)
+* Interfaz optimizada en modo claro (light mode)
 
 ---
 
 ## Posibles mejoras futuras
 
-* Integración con una API real
 * Sistema de autenticación real
 * Pasarela de pago
 * Búsqueda de productos
 * Filtros avanzados
-* Responsive improvements
+* Mejoras en UX/UI y animaciones
+* Migración a backend real (Node.js / Spring Boot)
+* Base de datos real
 
 ---
 

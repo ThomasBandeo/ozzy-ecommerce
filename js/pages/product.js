@@ -1,20 +1,20 @@
 import { initHeader } from "../ui/header.js";
-import { products } from "../data/products.js";
 import {addToCart} from "../services/cartServices.js";
 import { initCartEvents , updateCartQuantityUI} from "../ui/cart.js";
 import { renderLayout } from "../layout/layout.js";
-
+import { getProductById } from "../services/productServices.js";
 
 /* ESTADO GLOBAL DEL PRODUCTO */
 let selectedSize = null;
 let addBtn;
 let currentProduct = null; 
 
-function loadProduct() {
+async function loadProduct() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
 
-  const product = products.find(p => p.id === Number(id));
+  const product = await getProductById(id);
+
   if (!product) {
     window.location.href = "index.html";
     return;
@@ -25,6 +25,7 @@ function loadProduct() {
   if (!mainImage) return;
   const thumbnailsContainer = document.getElementById("thumbnails");
   if (!thumbnailsContainer) return;
+
   // Unificamos imágenes sin duplicar datos
   const allImages = [product.mainImage, ...product.gallery];
 
@@ -117,8 +118,8 @@ function initAddToCart() {
   });
 }
 
-function initProductPage() {
-  loadProduct();
+async function initProductPage() {
+  await loadProduct();
   initSizeSelector();
   initAddToCart();
 }
