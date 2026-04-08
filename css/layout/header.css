@@ -21,7 +21,7 @@
     border-bottom: 1px solid var(--color-border-light);
 }
 
-/* hamburguesa blanca en home arriba */
+/* ESTADO INICIAL (home SIN scroll) */
 .home .header:not(.scrolled) .menu-toggle span {
     background-color: white;
 }
@@ -37,9 +37,12 @@
     cursor: pointer;
 }
 
-.icon-btn,
-.menu-toggle {
+.icon-btn{
     color: inherit;
+}
+
+.menu-toggle span {
+    background-color: black;
 }
 
 .header-container {
@@ -122,7 +125,6 @@
     height: 2px;
     display: block;
     transition: 0.3s ease;
-    background-color: currentColor; /* usa el color del header */
 }
 
 .menu-toggle.active span:nth-child(1) {
@@ -200,18 +202,18 @@
     position: fixed;   
     top: 70px;         
     right: 100px;       
-    width: 350px;
-    height: 220px;
+    width: 300px;
+    height: auto;
     background: var(--color-surface);
     border: 1px solid var(--color-border-default);
-    border-radius: 6px;
+    border-radius: 12px;
     display: none;
     z-index: 999;
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-5px) scale(0.98);
     transition: all 0.2s ease;
-    padding: 32px 28px;
+    padding: 18px 16px;
 }
 
 .user-dropdown.active {
@@ -219,6 +221,7 @@
     opacity: 1;
     transform: translateY(0);
     color: var(--color-text);
+    transform: translateY(0) scale(1);
 }
 
 .logged {
@@ -230,18 +233,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
 }
 
 .dropdown-brand {
-    font-size: var( --font-lg);
+    font-size: var(--font-lg);
     font-weight: var(--weight-bold);
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     text-transform: uppercase;
+    opacity: 0.7;
 }
 
 .dropdown-title {
-    font-size: var( --font-md);
+    font-size: var(--font-md);
     font-weight: var(--weight-medium);
     line-height: 1.5;
     margin-bottom: 20px;
@@ -249,20 +253,28 @@
 
 .user-dropdown .btn-primary {
     padding: 8px 10px;
-    font-size: var( --font-md);
+    font-size: var(--font-md);
     border-radius: 20px;
     height: 40px;
 }
 
 .user-greeting{
     margin-bottom: 20px;
-    font-size: var( --font-md);
-    line-height: 1.4;
+    font-size: var(--font-md);
 }
 
 .user-greeting span {
     font-weight: 600;
+    opacity: 0.9;
 }
+
+.user-dropdown .btn-primary {
+    width: 100%;              
+    border-radius: 10px;
+    font-size: 14px;
+    height: 38px;
+}
+
 
 @media (max-width: 768px) {
 

@@ -166,6 +166,7 @@ Las imágenes de productos se cargan dinámicamente desde la API.
 * Separación entre lógica de UI y servicios
 * Diseño responsive (mobile-first)
 * Interfaz optimizada en modo claro (light mode)
+* Se forzó el esquema de color (`color-scheme: light`) para evitar inconsistencias en navegadores que aplican dark mode automático
 
 ---
 

@@ -18,16 +18,29 @@ document.addEventListener("DOMContentLoaded", () => {
       const passwordError = document.getElementById("passwordError");
       const confirmError = document.getElementById("confirmPasswordError");
 
+      const passwordInput = document.getElementById("password");
+      const confirmInput = document.getElementById("confirmPassword");
+
       passwordError.textContent = "";
       confirmError.textContent = "";
 
+      passwordError.style.display = "none";
+      confirmError.style.display = "none";
+
+      passwordInput.classList.remove("input-error");
+      confirmInput.classList.remove("input-error");
+
       if (password.length < 6) {
         passwordError.textContent = "Mínimo 6 caracteres";
+        passwordError.style.display = "block";
+        passwordInput.classList.add("input-error");
         return;
       }
 
       if (password !== confirmPassword) {
         confirmError.textContent = "Las contraseñas no coinciden";
+        confirmError.style.display = "block";
+        confirmInput.classList.add("input-error");
         return;
       }
 
