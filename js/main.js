@@ -12,6 +12,10 @@ async function initHomePage() {
 
   initHeader();
 
+  const yearSpan = document.getElementById('current-year');
+  const actualYear = new Date().getFullYear(); // Esto obtiene 2026 automáticamente
+  yearSpan.textContent = actualYear;
+
   const productsGrid = document.getElementById("productsGrid");
 
   if (productsGrid) {
